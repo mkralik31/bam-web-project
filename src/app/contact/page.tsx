@@ -7,12 +7,11 @@ export const generateMetadata = () => {
   };
 };
 
-export default function HomePage() {
+export default function ContactPage() {
   return (
     <div className="flex flex-col items-center sm:items-start gap-8">
-      {/* Logo */}
       <div>
-        <h1 className="text-4xl font-bold text-[#8ca4c0]">Úvod</h1>
+      <h1 className="text-4xl font-bold text-[#8ca4c0]">Kontakty</h1>
       </div>
     </div>
   );

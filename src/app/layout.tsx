@@ -3,7 +3,6 @@ import { Roboto } from "next/font/google";
 import Link from "next/link";
 import "../styles/globals.css";
 
-
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -22,16 +21,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased min-h-screen flex flex-col`}>
+      <body
+        className={`${roboto.variable} antialiased min-h-screen flex flex-col`}
+      >
         {/* Header s navigáciou */}
-        <header className="bg-gray-900 text-white sticky top-0 z-50">
-          <nav className="container mx-auto px-6 py-4">
+        <header className="bg-[#8ca4c0] text-white sticky top-0 z-50">
+          <nav className="container mx-auto px-6 py-8">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="text-2xl font-bold hover:text-gray-300 transition-colors">
-                BAM!
+                c h y t k a
               </Link>
-
               {/* Navigačné odkazy */}
               <div className="flex space-x-8">
                 <NavLink href="/">Domov</NavLink>
@@ -43,14 +43,12 @@ export default function RootLayout({
         </header>
 
         {/* Hlavný obsah */}
-        <main className="flex-1 container mx-auto px-6 py-8">
-          {children}
-        </main>
+        <main className="flex-1 container mx-auto px-6 py-8">{children}</main>
 
         {/* Footer */}
-        <footer className="bg-gray-900 text-white mt-auto">
+        <footer className="bg-[#8ca4c0] text-white mt-auto">
           <div className="container mx-auto px-6 py-4 text-center">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm">
               © {new Date().getFullYear()} BAM! atelier. Všetky práva vyhradené.
             </p>
           </div>
@@ -60,7 +58,13 @@ export default function RootLayout({
   );
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Link
       href={href}

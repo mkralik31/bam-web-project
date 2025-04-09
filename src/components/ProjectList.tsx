@@ -20,9 +20,6 @@ export default function ProjectList() {
   return (
     <div className="mt-8 flex justify-center">
       <div className="max-w-8xl w-full">
-        <h2 className="text-2xl font-semibold text-left mb-6">
-          Zoznam projektov
-        </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
           {projects.map((project) => (
             <li

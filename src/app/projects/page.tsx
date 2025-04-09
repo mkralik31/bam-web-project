@@ -1,4 +1,4 @@
-import React from "react";
+import ProjectList from "@/components/ProjectList";
 
 export const generateMetadata = () => {
   return {
@@ -7,13 +7,11 @@ export const generateMetadata = () => {
   };
 };
 
-export default function HomePage() {
+export default function ProjectsPage() {
   return (
     <div className="flex flex-col items-center sm:items-start gap-8">
-      {/* Logo */}
-      <div>
-        <h1 className="text-4xl font-bold text-[#8ca4c0]">Úvod</h1>
-      </div>
+              <h1 className="text-4xl font-bold text-[#8ca4c0]">Projekty</h1>
+      <ProjectList />
     </div>
   );
 }
