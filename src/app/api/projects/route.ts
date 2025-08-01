@@ -1,14 +1,37 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "@/lib/db";
+import Project from "@/models/Project";
 
-export async function GET() {
-  return NextResponse.json([
-    { id: 1, name: "chytka S", description: "Najmenšia z chytiek", image: "/projects-landing-img/ch-s.png" },
-    { id: 2, name: "chytka M", description: "Stredná chytka", image: "/projects-landing-img/ch-m.png" },
-    { id: 3, name: "chytka L", description: "Väčšia chytka", image: "/projects-landing-img/ch-l.png" },
-    { id: 4, name: "chytka XL", description: "Najvačšia chytka", image: "/projects-landing-img/ch-xl.png" },
-    { id: 5, name: "chytka XL", description: "Najvačšia chytka", image: "/projects-landing-img/ch-xl.png" },
-    { id: 6, name: "chytka L", description: "Väčšia chytka", image: "/projects-landing-img/ch-l.png" },
-    { id: 7, name: "chytka M", description: "Stredná chytka", image: "/projects-landing-img/ch-m.png" },
-    { id: 8, name: "chytka S", description: "Najmenšia z chytiek", image: "/projects-landing-img/ch-s.png" },
-  ]);
+export async function GET(request: NextRequest) {
+  try {
+    await dbConnect();
+    
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get('category');
+    const featured = searchParams.get('featured');
+    const limit = parseInt(searchParams.get('limit') || '12');
+    
+    let query: any = {};
+    
+    if (category) {
+      query.category = category;
+    }
+    
+    if (featured === 'true') {
+      query.featured = true;
+    }
+    
+    const projects = await Project.find(query)
+      .sort({ date: -1, createdAt: -1 })
+      .limit(limit)
+      .lean();
+    
+    return NextResponse.json(projects);
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
 }

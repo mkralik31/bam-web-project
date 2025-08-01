@@ -10,8 +10,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "BAM!",
-  description: "bam! atelier",
+  title: "BAM! atelier",
+  description: "Profesionálne riešenia pre váš digitálny svet",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="sk">
       <body
         className={`${roboto.variable} antialiased min-h-screen flex flex-col`}
       >
@@ -30,12 +30,13 @@ export default function RootLayout({
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="text-2xl font-bold hover:text-gray-300 transition-colors">
-                c h y t k a
+                BAM! atelier
               </Link>
               {/* Navigačné odkazy */}
               <div className="flex space-x-8">
                 <NavLink href="/">Domov</NavLink>
                 <NavLink href="/projects">Projekty</NavLink>
+                <NavLink href="/about">O nás</NavLink>
                 <NavLink href="/contact">Kontakt</NavLink>
               </div>
             </div>
